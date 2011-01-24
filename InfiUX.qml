@@ -37,7 +37,7 @@ Item {
 
                 MouseArea {
                     anchors.fill: parent
-                    onClicked: AppOpener.open("DummyOne", {color: "#3c3c3c", text: "Dummy app 2"});
+                    onClicked: AppOpener.open("DummyOne", {color: "#3c3c3c", title: "Dummy app 2", text: "Dummy app 2"});
                 }
             }
         }
@@ -52,7 +52,7 @@ Item {
 
                 MouseArea {
                     anchors.fill: parent
-                    onClicked: AppOpener.open("DummyOne", {color: "#ffffff", text: "Dummy app 1"});
+                    onClicked: AppOpener.open("DummyOne", {color: "#ffffff", title: "Dummy app 1", text: "Dummy app 1"});
                 }
             }
         }
@@ -67,7 +67,7 @@ Item {
 
                 MouseArea {
                     anchors.fill: parent
-                    onClicked: AppOpener.open("DummyOne", {color: "#444444", text: "Dummy app 3"});
+                    onClicked: AppOpener.open("DummyOne", {color: "#444444", title: "Dummy app 3", text: "Dummy app 3"});
                 }
             }
         }

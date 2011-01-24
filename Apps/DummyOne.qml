@@ -5,9 +5,14 @@ Rectangle {
     color: "#ffffff"
     anchors.fill: parent
 
+    property string title: "Dummy Application"
     property bool shown: false
     property alias text: appText.text
 
+    onShownChanged: {
+        if (shown) header.breadcrumb.addItem(app.title);
+        else header.breadcrumb.removeLastItem();
+    }
 
     Rectangle {
         color: "#cccccc"
@@ -17,6 +22,7 @@ Rectangle {
         MouseArea {
             anchors.fill: parent
             onClicked: {
+                shown = false;
                 app.destroy();
             }
         }

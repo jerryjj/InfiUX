@@ -31,11 +31,12 @@ function createItem()
 {
     if (itemComponent.status == Component.Ready && selectedApp == null) {
         selectedApp = itemComponent.createObject(applicationHolder);
-        selectedApp.shown = true;
 
         if (appProps) {
             for (var k in appProps) { selectedApp[k] = appProps[k]; }
         }
+
+        selectedApp.shown = true;
 
         selectedApp = null;
     } else if (itemComponent.status == Component.Error) {
