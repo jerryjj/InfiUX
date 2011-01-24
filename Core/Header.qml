@@ -7,7 +7,7 @@ Rectangle {
 
     color: "#e75012"
     property string borderImagePath: "../img/header.sci"
-    default property alias breadcrumb: _breadcrumb
+    default property alias breadcrumb: p_breadcrumb
 
     BorderImage { source: borderImagePath; width: parent.width; height: parent.height }
 
@@ -29,7 +29,7 @@ Rectangle {
     }
 
     Breadcrumb {
-        id: _breadcrumb
+        id: p_breadcrumb
         height: title.height
         anchors { left: title.right; leftMargin: 10; verticalCenter: title.verticalCenter }
     }

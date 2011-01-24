@@ -1,12 +1,10 @@
 import Qt 4.7
 
 Item {
-    //anchors { verticalCenter: parent }
-
-    property alias label: _label.text
+    property alias label: p_label.text
 
     Text {
-        id: _label
+        id: p_label
         color: "#ffffff"
         text: ""
     }
