@@ -12,6 +12,7 @@
 #endif
 
 #include "mainwidget.h"
+#include "configuration.h"
 
 QString baseUIFile(contentPath + "InfiUX.qml");
 
@@ -44,6 +45,11 @@ MainWidget::MainWidget(QWidget *parent) :
 
 MainWidget::~MainWidget()
 {
+}
+
+QVariant MainWidget::getConfigValue(const QString & key) const
+{
+   return Config().value(key);
 }
 
 void MainWidget::minimizeWindow()
