@@ -16,7 +16,7 @@ Rectangle {
 
     Rectangle {
         color: "#cccccc"
-        width: 20; height: 20
+        width: 30; height: 30
         anchors { top: parent.top; right: parent.right }
 
         MouseArea {
@@ -30,6 +30,7 @@ Rectangle {
         Text {
             anchors.centerIn: parent
             text: "X"
+            font { pixelSize: 20; bold: true }
         }
     }
 
