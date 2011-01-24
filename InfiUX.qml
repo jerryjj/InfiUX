@@ -23,6 +23,10 @@ Item {
         onClicked: ui.focus = false;
     }
 
+    Component.onCompleted: {
+        //console.log(mainWidget.getConfigValue("main/loglevel").toString());
+    }
+
     Core.Header {
         id: header
         width: parent.width; height: 35
