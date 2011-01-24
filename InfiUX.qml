@@ -10,7 +10,7 @@ Item {
 
     MouseArea {
         anchors.fill: parent
-        onClicked: window.focus = false;
+        onClicked: ui.focus = false;
     }
 
 
