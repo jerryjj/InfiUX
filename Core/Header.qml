@@ -1,5 +1,7 @@
 import Qt 4.7
 
+import "../Common/" 1.0 as Common
+
 Rectangle {
     id: wrapper
 
@@ -16,6 +18,7 @@ Rectangle {
         color: "#ffffff"
 
         text: "InfiUX"
+        font { pixelSize: 14; bold: true }
 
         MouseArea {
             anchors.fill: parent
@@ -29,5 +32,23 @@ Rectangle {
         id: _breadcrumb
         height: title.height
         anchors { left: title.right; leftMargin: 10; verticalCenter: title.verticalCenter }
+    }
+
+    Common.BarGauge {
+        id: batteryGauge
+        width: 50; height: 15
+        anchors { right: wrapper.right; rightMargin: 10; verticalCenter: wrapper.verticalCenter }
+        isHorizontal: true
+        showLabel: true
+        val: 45
+
+        //Dummy tester
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                if (batteryGauge.val < batteryGauge.max) batteryGauge.val = batteryGauge.val + 15;
+                else batteryGauge.val = 0;
+            }
+        }
     }
 }
