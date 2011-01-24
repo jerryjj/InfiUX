@@ -36,7 +36,7 @@ function createItem()
             for (var k in appProps) { selectedApp[k] = appProps[k]; }
         }
 
-        selectedApp.shown = true;
+        selectedApp.open = true;
 
         selectedApp = null;
     } else if (itemComponent.status == Component.Error) {
