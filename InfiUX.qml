@@ -1,6 +1,7 @@
 import Qt 4.7
 
 import "Core" 1.0 as Core
+import "Common" 1.0 as Common
 
 import "Core/applicationOpener.js" 1.0 as AppOpener
 
@@ -8,11 +9,18 @@ Item {
     id: ui
     width: 1024; height: 600
 
+    //Just dummy way to test OSD
+    focus: true
+    Keys.onEscapePressed: {
+        mainOSD.opacity = !mainOSD.opacity;
+    }
+
+    SystemPalette { id: palette }
+
     MouseArea {
         anchors.fill: parent
         onClicked: ui.focus = false;
     }
-
 
     Core.Header {
         id: header
@@ -77,7 +85,35 @@ Item {
         id: applicationHolder
 
         anchors { top: header.bottom; bottom: desktop.bottom; left: desktop.left; right: desktop.right }
+    }
 
+    Core.OSD {
+        id: mainOSD
+        anchors.fill: ui
+        opacity: 0
 
+        items: [
+            Common.Button {
+                text: "Cancel"
+                onClicked: {
+                    console.log("cancel");
+                    mainOSD.opacity = 0;
+                }
+            },
+
+            Common.Button {
+                text: "Sleep"
+                onClicked: {
+                    console.log("sleep");
+                }
+            },
+
+            Common.Button {
+                text: "Shutdown"
+                onClicked: {
+                    console.log("shutdown");
+                }
+            }
+        ]
     }
 }
