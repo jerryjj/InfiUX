@@ -37,7 +37,7 @@ Rectangle {
     Common.BarGauge {
         id: batteryGauge
         width: 50; height: 15
-        anchors { right: wrapper.right; rightMargin: 10; verticalCenter: wrapper.verticalCenter }
+        anchors { right: clock.left; rightMargin: 20; verticalCenter: wrapper.verticalCenter }
         isHorizontal: true
         showLabel: true
         val: 45
@@ -49,6 +49,19 @@ Rectangle {
                 if (batteryGauge.val < batteryGauge.max) batteryGauge.val = batteryGauge.val + 15;
                 else batteryGauge.val = 0;
             }
+        }
+    }
+
+    Common.Datetime {
+        id: clock
+
+        width: clockContent.width; height: title.height
+        anchors { right: wrapper.right; rightMargin: 10; verticalCenter: wrapper.verticalCenter }
+
+        Text {
+            id: clockContent
+            color: "#ffffff"
+            text: clock.formatted
         }
     }
 }
