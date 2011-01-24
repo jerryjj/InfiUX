@@ -24,10 +24,12 @@ unix:!symbian {
 }
 
 HEADERS += \
-    mainwidget.h
+    mainwidget.h \
+    configuration.h
 
 SOURCES += main.cpp \
-    mainwidget.cpp
+    mainwidget.cpp \
+    configuration.cpp
 
 OTHER_FILES += \
     Apps/DummyOne.qml \
@@ -43,7 +45,9 @@ OTHER_FILES += \
     Core/Breadcrumb.qml \
     Core/breadcrumb.js \
     Core/applicationOpener.js \
-    InfiUX.qml
+    InfiUX.qml \
+    Common/Datetime.qml \
+    Common/dateformat.js
 
 RESOURCES += \
     InfiUX.qrc
