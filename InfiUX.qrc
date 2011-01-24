@@ -1,0 +1,23 @@
+<RCC>
+    <qresource prefix="/ui">
+        <file>InfiUX.qml</file>
+        <file>Core/applicationOpener.js</file>
+        <file>Core/breadcrumb.js</file>
+        <file>Core/Breadcrumb.qml</file>
+        <file>Core/BreadcrumbItem.qml</file>
+        <file>Core/Desktop.qml</file>
+        <file>Core/DesktopPage.qml</file>
+        <file>Core/Header.qml</file>
+        <file>Core/NotificationItem.qml</file>
+        <file>Core/notifications.js</file>
+        <file>Core/OSD.qml</file>
+        <file>Common/BarGauge.qml</file>
+        <file>Common/Button.qml</file>
+        <file>Apps/DummyOne.qml</file>
+        <file>backgrounds/default.png</file>
+        <file>img/header-bg.png</file>
+        <file>img/header.sci</file>
+        <file>img/pager-ring-indicator.png</file>
+        <file>img/pager-ring.png</file>
+    </qresource>
+</RCC>
