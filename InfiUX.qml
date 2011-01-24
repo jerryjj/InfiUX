@@ -146,6 +146,7 @@ Item {
                 text: "Shutdown"
                 onClicked: {
                     console.log("shutdown");
+                    mainWidget.exitApplication();
                 }
             }
         ]
