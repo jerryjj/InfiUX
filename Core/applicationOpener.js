@@ -18,7 +18,7 @@ function loadComponent(component_name)
         return;
     }
 
-    var componentFile = "Apps/"+component_name+".qml";
+    var componentFile = "../Apps/"+component_name+".qml";
 
     itemComponent = Qt.createComponent(componentFile);
     if (itemComponent.status == Component.Loading)  //Depending on the content, it can be ready or error immediately
