@@ -11,13 +11,15 @@ Rectangle {
 
     BorderImage { source: borderImagePath; width: parent.width; height: parent.height }
 
+    z: 60000
+
     Text {
         id: title
         width: 50
         anchors { left: parent.left; leftMargin: 10; verticalCenter: parent.verticalCenter }
-        color: "#ffffff"
 
         text: "InfiUX"
+        color: "#ffffff"
         font { pixelSize: 14; bold: true }
 
         MouseArea {
@@ -34,6 +36,12 @@ Rectangle {
         anchors { left: title.right; leftMargin: 10; verticalCenter: title.verticalCenter }
     }
 
+    Image {
+        width: 22; height: 22
+        anchors { right: batteryGauge.left; rightMargin: 5; verticalCenter: wrapper.verticalCenter }
+        source: "../img/icons/battery.png"
+    }
+
     Common.BarGauge {
         id: batteryGauge
         width: 50; height: 15
@@ -42,12 +50,21 @@ Rectangle {
         showLabel: true
         val: 45
 
+        property bool charging: false
+        onChargingChanged: {
+            if (batteryGauge.charging) batteryGauge.overwriteLabel('Charge');
+        }
+
         //Dummy tester
         MouseArea {
             anchors.fill: parent
             onClicked: {
                 if (batteryGauge.val < batteryGauge.max) batteryGauge.val = batteryGauge.val + 15;
-                else batteryGauge.val = 0;
+                else {
+                    if (!batteryGauge.charging) batteryGauge.charging = true;
+                    else batteryGauge.val = 0;
+                }
+
             }
         }
     }
