@@ -3,6 +3,7 @@ import Qt 4.7
 Item {
     id: wrapper
     anchors.fill: parent
+    z: 60500
 
     property alias items: itemsRow.children
 
