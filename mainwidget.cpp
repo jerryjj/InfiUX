@@ -1,10 +1,10 @@
-#include <QDeclarativeItem>
 #include <QGLWidget>
 #include <QGLFormat>
 #include <QUrl>
 #include <QTimer>
 #include <QApplication>
 #include <QDeclarativeEngine>
+#include <QDeclarativeItem>
 
 #if defined(Q_WS_MAEMO_5)
 // This is needed for Maemo5 to recognize minimization of the application window
