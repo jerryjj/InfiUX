@@ -1,7 +1,7 @@
 TARGET = InfiUX
 TEMPLATE = app
 
-QT       += core declarative
+QT       += core declarative opengl
 
 #CONFIG += mobility
 #MOBILITY += sensors
@@ -47,7 +47,11 @@ OTHER_FILES += \
     Core/applicationOpener.js \
     InfiUX.qml \
     Common/Datetime.qml \
-    Common/dateformat.js
+    Common/dateformat.js \
+    Common/WidgetBase.qml \
+    ApplicationLauncher.qml \
+    Core/MainMenu.qml \
+    Core/TopPanel.qml
 
 RESOURCES += \
     InfiUX.qrc
