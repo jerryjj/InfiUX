@@ -12,8 +12,9 @@ Rectangle {
     property alias text: appText.text
 
     onOpenChanged: {
-        if (open) header.breadcrumb.addItem(app.title);
-        else header.breadcrumb.removeLastItem();
+        //TODO: Re-enable this when breadcrumb is created in core
+        //if (open) header.breadcrumb.addItem(app.title);
+        //else header.breadcrumb.removeLastItem();
     }
 
     Rectangle {
