@@ -19,5 +19,15 @@
         <file>img/header.sci</file>
         <file>img/pager-ring-indicator.png</file>
         <file>img/pager-ring.png</file>
+        <file>widgets/ApplicationLauncher.qml</file>
+        <file>Core/TopPanel.qml</file>
+        <file>Common/WidgetBase.qml</file>
+        <file>Common/Datetime.qml</file>
+        <file>Common/dateformat.js</file>
+        <file>img/icons/dialog-warning.png</file>
+        <file>img/icons/dialog-information.png</file>
+        <file>img/icons/dialog-error.png</file>
+        <file>img/icons/battery.png</file>
+        <file>img/header-arrow-down.png</file>
     </qresource>
 </RCC>
