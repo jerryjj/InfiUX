@@ -4,6 +4,7 @@ import "../Common/" 1.0 as Common
 
 Rectangle {
     id: wrapper
+    z: 60000
 
     color: "#e75012"
     property string borderImagePath: "../img/header.sci"
@@ -11,7 +12,17 @@ Rectangle {
 
     BorderImage { source: borderImagePath; width: parent.width; height: parent.height }
 
-    z: 60000
+    Connections {
+        target: parent
+        onPanelOpen: {
+            console.log("onPanelOpen");
+            arrow.state = "up";
+        }
+        onPanelClose: {
+            console.log("onPanelClose");
+            arrow.state = "down";
+        }
+    }
 
     Text {
         id: title
@@ -34,6 +45,36 @@ Rectangle {
         id: p_breadcrumb
         height: title.height
         anchors { left: title.right; leftMargin: 10; verticalCenter: title.verticalCenter }
+    }
+
+    Item {
+        id: arrow
+        state: "down"
+        width: 48; height: 34
+        anchors.centerIn: parent
+
+        Image {
+            id: img
+            anchors.fill: parent
+            source: "../img/header-arrow-down.png"
+        }
+
+        states: [
+            State {
+                name: "down"
+                PropertyChanges { target: img; rotation: 0 }
+            },
+            State {
+                name: "up"
+                PropertyChanges { target: img; rotation: -180 }
+            }
+        ]
+        transitions: [
+            Transition {
+                NumberAnimation { properties: "rotation"; duration: 500; easing.type: Easing.InOutSine }
+            }
+        ]
+
     }
 
     Image {
