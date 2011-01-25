@@ -3,8 +3,8 @@ import Qt 4.7
 import "Core" 1.0 as Core
 import "Common" 1.0 as Common
 
-import "Core/applicationOpener.js" 1.0 as AppOpener
 import "Core/notifications.js" 1.0 as Notifications
+import "widgets" 1.0
 
 Item {
     id: ui
@@ -27,66 +27,93 @@ Item {
         //console.log(mainWidget.getConfigValue("main/loglevel").toString());
     }
 
-    Core.Header {
-        id: header
-        width: parent.width; height: 35
+    Core.TopPanel {
+        id: topPanel
+        width: ui.width; height: ui.height
+        y: -(ui.height - 35)
     }
 
     Core.Desktop {
         id: desktop
         width: ui.width; height: 565
         clip: true
-        anchors { top: header.bottom }
+        anchors { top: topPanel.bottom }
 
         background: "backgrounds/default.png"
 
         Core.DesktopPage {
             id: pageOne
+            desktopIndex: 0
+            ApplicationLauncher {
+                id: appLTwo
+                module: "DummyOne"
 
-            Rectangle {
-                color: "#3c3c3c"
-                width: 100; height: 100
+                //TODO: This is ugly. This will change when these are implemented in C++
+                function getProperties() {
+                    return {color: "#3c3c3c", title: "Dummy app 2", text: "Dummy app 2"};
+                }
+
                 x: 120; y: 300
 
-                MouseArea {
+                Rectangle {
+                    function prepareEditMode() {
+                        console.log("prepareEditMode");
+                    }
+
+                    color: "#3c3c3c"
                     anchors.fill: parent
-                    onClicked: AppOpener.open("DummyOne", {color: "#3c3c3c", title: "Dummy app 2", text: "Dummy app 2"});
                 }
             }
         }
 
         Core.DesktopPage {
             id: pageTwo
+            desktopIndex: 1
 
-            Rectangle {
-                color: "#ffffff"
-                width: 100; height: 100
-                anchors.centerIn: parent
+            ApplicationLauncher {
+                id: appLOne
+                module: "DummyOne"
+                function getProperties() {
+                    return {color: "#ffffff", title: "Dummy app 1", text: "Dummy app 1"};
+                }
 
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: {
-                        notifications.addInfo({text: "Hello, World!"});
-                        AppOpener.open("DummyOne", {color: "#ffffff", title: "Dummy app 1", text: "Dummy app 1"});
+                x: 300; y: 200
+
+                onOpened: {
+                    notifications.addInfo({text: "Hello, World!"});
+                }
+
+                Rectangle {
+                    function prepareEditMode() {
+                        console.log("prepareEditMode");
                     }
+
+                    color: "#ffffff"
+                    anchors.fill: parent
                 }
             }
         }
 
         Core.DesktopPage {
             id: pageThree
+            desktopIndex: 2
 
-            Rectangle {
-                color: "#444444"
-                width: 100; height: 100
+            ApplicationLauncher {
+                id: appLThree
+                module: "DummyOne"
+                function getProperties() {
+                    return {color: "#444444", title: "Dummy app 3", text: "Dummy app 3"};
+                }
+
                 x: 245; y: 80
 
-                MouseArea {
+                onOpened: {
+                    notifications.addError({text: "Hello, World! We have ERROR!"});
+                }
+
+                Rectangle {
+                    color: "#444444"
                     anchors.fill: parent
-                    onClicked: {
-                        notifications.addError({text: "Hello, World! We have ERROR!"});
-                        AppOpener.open("DummyOne", {color: "#444444", title: "Dummy app 3", text: "Dummy app 3"});
-                    }
                 }
             }
         }
@@ -94,13 +121,13 @@ Item {
 
     Item {
         id: applicationHolder
-        anchors { top: header.bottom; bottom: desktop.bottom; left: desktop.left; right: desktop.right }
+        anchors { top: topPanel.bottom; bottom: desktop.bottom; left: desktop.left; right: desktop.right }
     }
 
     Item {
         id: notifications
         width: ui.width; height: 30
-        anchors { top: header.bottom }
+        anchors { top: ui.top }
 
         function addInfo(props)
         {
