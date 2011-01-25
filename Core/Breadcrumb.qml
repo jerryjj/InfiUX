@@ -16,6 +16,5 @@ Item {
 
     Item {
         id: itemsHolder
-        //anchors { verticalCenter: parent }
     }
 }
