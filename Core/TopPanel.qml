@@ -9,6 +9,9 @@ Item {
     property bool _panel_open: false
     property bool _header_drag_started: false
 
+    signal panelOpen
+    signal panelClose
+
     Header {
         id: header
         width: ui.width; height: 35
@@ -57,8 +60,14 @@ Item {
         onReleased: {
             wrapper._panel_moving = true;
             if (wrapper._header_drag_started) {
-                if (wrapper._panel_open) wrapper._panel_open = false;
-                else wrapper._panel_open = true;
+                if (wrapper._panel_open) {
+                    wrapper._panel_open = false;
+                    panelClose();
+                }
+                else {
+                    wrapper._panel_open = true;
+                    panelOpen();
+                }
                 wrapper._header_drag_started = false;
             }
         }
