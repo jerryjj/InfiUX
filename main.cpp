@@ -5,8 +5,12 @@
 #include <QDir>
 #include <QDebug>
 
+#include <QtDeclarative>
+
 #include "configuration.h"
 #include "mainwidget.h"
+
+#include "deviceinfo.h"
 
 QTextStream logfile;
 
@@ -27,6 +31,8 @@ void initializeConfig() {
 
 int main(int argc, char *argv[])
 {
+    qmlRegisterType<DeviceInfo>("InfiUX.DeviceInfo", 1, 0, "DeviceInfo");
+
     QDir configFileDir;
     bool configFileDirSet = false;
 

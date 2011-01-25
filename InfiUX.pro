@@ -25,11 +25,13 @@ unix:!symbian {
 
 HEADERS += \
     mainwidget.h \
-    configuration.h
+    configuration.h \
+    deviceinfo.h
 
 SOURCES += main.cpp \
     mainwidget.cpp \
-    configuration.cpp
+    configuration.cpp \
+    deviceinfo.cpp
 
 OTHER_FILES += \
     Apps/DummyOne.qml \
@@ -51,7 +53,8 @@ OTHER_FILES += \
     Common/WidgetBase.qml \
     ApplicationLauncher.qml \
     Core/MainMenu.qml \
-    Core/TopPanel.qml
+    Core/TopPanel.qml \
+    widgets/ApplicationLauncher.qml
 
 RESOURCES += \
     InfiUX.qrc

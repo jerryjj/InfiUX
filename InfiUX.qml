@@ -6,9 +6,16 @@ import "Common" 1.0 as Common
 import "Core/notifications.js" 1.0 as Notifications
 import "widgets" 1.0
 
+import InfiUX.DeviceInfo 1.0
+
 Item {
     id: ui
-    width: 1024; height: 600
+
+    DeviceInfo {
+        id: deviceInfo
+    }
+
+    width: deviceInfo.screenX; height: deviceInfo.screenY
 
     //Just dummy way to test OSD
     focus: true
@@ -35,7 +42,7 @@ Item {
 
     Core.Desktop {
         id: desktop
-        width: ui.width; height: 565
+        width: ui.width; height: ui.height - 35
         clip: true
         anchors { top: topPanel.bottom }
 
