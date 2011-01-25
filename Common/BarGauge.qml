@@ -20,6 +20,10 @@ Rectangle {
     property int okLimit: 70;
     property int dangerLimit: 25;
 
+    function overwriteLabel(content) {
+        _valueStr = content;
+    }
+
     onValChanged: {
         if (val > max) val = max;
         _valueStr = val + " %";
