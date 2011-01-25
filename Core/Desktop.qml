@@ -8,6 +8,35 @@ Item {
 
     default property alias content: visualModel.children
 
+    function activateEditMode() {
+        list.interactive = false;
+        console.log("activateEditMode");
+    }
+
+    function deactivateEditMode() {
+        list.interactive = true;
+        console.log("deactivateEditMode");
+    }
+
+    function getLeftIndex() {
+        console.log("getLeftIndex "+(currentIndex - 1));
+        return currentIndex - 1 >= 0 ? currentIndex - 1 : currentIndex;
+    }
+    function getRightIndex() {
+        console.log("getRightIndex "+(currentIndex + 1));
+        return currentIndex + 1 <= list.count-1 ? currentIndex + 1 : currentIndex;
+    }
+
+    function moveLeft() {
+        console.log("Desktop moveLeft");
+        list.moveLeft();
+    }
+
+    function moveRight() {
+        console.log("Desktop moveRight");
+        list.moveRight();
+    }
+
     Image {
         id: background
         fillMode: Image.TileHorizontally
@@ -19,6 +48,15 @@ Item {
     ListView {
         id: list
         anchors.fill: parent
+
+        function moveLeft() {
+            if (currentIndex == 0) return;
+            currentIndex -= 1;
+        }
+        function moveRight() {
+            if (currentIndex+1 > count-1) return;
+            currentIndex += 1;
+        }
 
         currentIndex: wrapper.currentIndex
         onCurrentIndexChanged: wrapper.currentIndex = currentIndex
