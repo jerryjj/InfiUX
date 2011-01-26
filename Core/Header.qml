@@ -15,11 +15,9 @@ Rectangle {
     Connections {
         target: parent
         onPanelOpen: {
-            console.log("onPanelOpen");
             arrow.state = "up";
         }
         onPanelClose: {
-            console.log("onPanelClose");
             arrow.state = "down";
         }
     }
