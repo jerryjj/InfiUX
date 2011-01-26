@@ -24,14 +24,14 @@ unix:!symbian {
 }
 
 HEADERS += \
-    mainwidget.h \
-    configuration.h \
-    deviceinfo.h
+    src/mainwidget.h \
+    src/configuration.h \
+    src/deviceinfo.h
 
-SOURCES += main.cpp \
-    mainwidget.cpp \
-    configuration.cpp \
-    deviceinfo.cpp
+SOURCES += src/main.cpp \
+    src/mainwidget.cpp \
+    src/configuration.cpp \
+    src/deviceinfo.cpp
 
 OTHER_FILES += \
     Apps/DummyOne.qml \
