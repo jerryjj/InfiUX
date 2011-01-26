@@ -1,0 +1,6 @@
+[main]
+loglevel=3
+logfile=/var/log/infiux.log
+
+[datetime]
+path_to_date=/bin/date
