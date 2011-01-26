@@ -1,7 +1,10 @@
+# To disable OpenGL features, comment the following:
+DEFINES += OPENGL_ENABLED
+
 TARGET = InfiUX
 TEMPLATE = app
 
-QT       += core declarative opengl
+QT       += core declarative
 
 #CONFIG += mobility
 #MOBILITY += sensors
@@ -12,7 +15,7 @@ maemo5 {
     QT += dbus
 }
 
-contains(QT_CONFIG, opengles2)|contains(QT_CONFIG, opengl):QT += opengl
+contains(DEFINES, OPENGL_ENABLED)|contains(QT_CONFIG, opengles2)|contains(QT_CONFIG, opengl):QT += opengl
 
 unix:!symbian {
     maemo5 {
