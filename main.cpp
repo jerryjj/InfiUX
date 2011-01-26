@@ -1,11 +1,13 @@
 #include <QApplication>
-#include <QSplashScreen>
 #include <QCoreApplication>
 #include <QTextStream>
 #include <QDir>
+#include <QtDeclarative>
 #include <QDebug>
 
-#include <QtDeclarative>
+//#if defined(Q_WS_MAEMO_5)
+#include <QSplashScreen>
+//#endif
 
 #include "configuration.h"
 #include "mainwidget.h"
@@ -47,6 +49,13 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
     //app.setStartDragDistance(30);
 
+    // Splash screen
+    //#if defined(Q_WS_MAEMO_5)
+    QPixmap pixmap(":/ui/img/splash.png");
+    QSplashScreen splash(pixmap);
+    splash.show();
+    //#endif
+
     QCoreApplication::setOrganizationName("Infigo Finland Oy");
     QCoreApplication::setOrganizationDomain("infigo.fi");
     QCoreApplication::setApplicationName("InfiUX");
@@ -58,14 +67,10 @@ int main(int argc, char *argv[])
     QString fileName = configFileDir.filePath("infiux.ini");
     Config().loadConfigFromFile(fileName);
 
-    initializeConfig();
+    splash.showMessage("Config loaded");
+    app.processEvents();
 
-    // Splash screen
-    #if defined(Q_WS_MAEMO_5)
-    QPixmap pixmap(contentPath + "img/splash.png");
-    QSplashScreen splash(pixmap);
-    splash.show();
-    #endif
+    initializeConfig();
 
     if (Config().contains("main/logfile") && Config().value("main/logfile").toString() != "") {
         QFile *lf = new QFile(Config().value("main/logfile").toString());
@@ -77,12 +82,20 @@ int main(int argc, char *argv[])
         }
     }
 
+    splash.showMessage("Config initialized");
+    app.processEvents();
+
+    //This can be used to show the Splash for awhile
+//    QTime dieTime = QTime::currentTime().addSecs(2);
+//    while( QTime::currentTime() < dieTime )
+//        app.processEvents(QEventLoop::AllEvents, 100);
+
     MainWidget mainWidget;
     mainWidget.show();
 
-    #if defined(Q_WS_MAEMO_5)
+    //#if defined(Q_WS_MAEMO_5)
     splash.finish(&mainWidget);
-    #endif
+    //#endif
 
     app.connect(&app, SIGNAL(lastWindowClosed()), &app, SLOT(quit()));
 

@@ -29,5 +29,6 @@
         <file>img/icons/dialog-error.png</file>
         <file>img/icons/battery.png</file>
         <file>img/header-arrow-down.png</file>
+        <file>img/splash.png</file>
     </qresource>
 </RCC>
