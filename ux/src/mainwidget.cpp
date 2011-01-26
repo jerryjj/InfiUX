@@ -1,10 +1,13 @@
-#include <QGLWidget>
-#include <QGLFormat>
 #include <QUrl>
 #include <QTimer>
 #include <QApplication>
 #include <QDeclarativeEngine>
 #include <QDeclarativeItem>
+
+#ifdef OPENGL_ENABLED
+#include <QGLWidget>
+#include <QGLFormat>
+#endif
 
 //#include <QtDBus>
 
@@ -31,7 +34,7 @@ MainWidget::MainWidget(QWidget *parent) :
     setAttribute(Qt::WA_OpaquePaintEvent);
     setAttribute(Qt::WA_NoSystemBackground);
 
-#ifdef DBUS_ENABLED
+#ifdef OPENGL_ENABLED
     // Make QDeclarativeView use OpenGL backend
     QGLWidget *glWidget = new QGLWidget(this);
     setViewport(glWidget);
