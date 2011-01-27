@@ -1,0 +1,9 @@
+--- ux/InfiUX.pro	2011-01-26 22:45:31.000000000 +0200
++++ InfiUX.pro	2011-01-26 22:45:43.000000000 +0200
+@@ -1,5 +1,5 @@
+ # To disable OpenGL features, comment the following:
+-DEFINES += OPENGL_ENABLED
++#DEFINES += OPENGL_ENABLED
+ 
+ TARGET = InfiUX
+ TEMPLATE = app
