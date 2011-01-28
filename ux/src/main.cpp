@@ -49,6 +49,10 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
     //app.setStartDragDistance(30);
 
+#ifndef Q_WS_MAC
+    app.setOverrideCursor(QCursor(Qt::BlankCursor));
+#endif
+
     // Splash screen
     //#if defined(Q_WS_MAEMO_5)
     QPixmap pixmap(":/ui/img/splash.png");
