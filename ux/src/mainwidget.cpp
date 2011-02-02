@@ -84,19 +84,21 @@ Qt::Key MainWidget::getQtKeyFromString(QString s)
     unsigned char c = s.toUpper().toStdString()[0];
     uint code;
 
-    if(s.length()==1 || s.contains(QChar('&'))){
+    if (s.length()==1 || s.contains(QChar('&'))) {
         if (c >= '!' && c <= '`') {
             code = c - ' ' + Qt::Key_Space;
-        }else if(c >= '{' && c <= '~'){
+        } else if (c >= '{' && c <= '~') {
             code = c - '{' + Qt::Key_BraceLeft;
-        }else{
-            code = Qt::Key_unknown;
+        } else {
+            code = (Qt::Key) s.toUInt(new bool, 16);
         }
-    }else{
+    } else {
         code = Qt::Key_unknown;
     }
 
-   return (Qt::Key) code;
+    qDebug() << "final code: " << code;
+
+    return (Qt::Key) code;
 }
 
 void MainWidget::virtualKeyPressed(QString action, int code)
