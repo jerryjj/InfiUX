@@ -7,6 +7,7 @@ import "Core/notifications.js" 1.0 as Notifications
 import "widgets" 1.0
 
 import InfiUX.DeviceInfo 1.0
+//import InfiUX.Keyboard 1.0
 
 Item {
     id: ui
@@ -14,6 +15,8 @@ Item {
     DeviceInfo {
         id: deviceInfo
     }
+
+    property alias keyboard: virtualKeyboard
 
     width: deviceInfo.screenX; height: deviceInfo.screenY
 
@@ -32,6 +35,9 @@ Item {
 
     Component.onCompleted: {
         //console.log(mainWidget.getConfigValue("main/loglevel").toString());
+        //keyboard.is_open = true;
+
+        browser.createObject(testBrowser);
     }
 
     Core.TopPanel {
@@ -51,24 +57,12 @@ Item {
         Core.DesktopPage {
             id: pageOne
             desktopIndex: 0
-            ApplicationLauncher {
-                id: appLTwo
-                module: "DummyOne"
 
-                //TODO: This is ugly. This will change when these are implemented in C++
-                function getProperties() {
-                    return {color: "#3c3c3c", title: "Dummy app 2", text: "Dummy app 2"};
-                }
-
-                x: 120; y: 300
-
-                Rectangle {
-                    function prepareEditMode() {
-                        console.log("prepareEditMode");
-                    }
-
-                    color: "#3c3c3c"
-                    anchors.fill: parent
+            Item {
+                id: testBrowser
+                anchors.fill: parent
+                Component.onCompleted: {
+                    desktop.deactivateListScroll(0);
                 }
             }
         }
@@ -181,6 +175,14 @@ Item {
             },
 
             Common.Button {
+                text: "Reboot"
+                onClicked: {
+                    console.log("reboot");
+                    mainWidget.exitApplication();
+                }
+            },
+
+            Common.Button {
                 text: "Shutdown"
                 onClicked: {
                     console.log("shutdown");
@@ -188,6 +190,12 @@ Item {
                 }
             }
         ]
+    }
+
+    Common.Keyboard {
+        id: virtualKeyboard
+        objectName: "keyboard"
+        anchors { left: ui.left; right: ui.right; bottom: ui.bottom }
     }
 
 }
