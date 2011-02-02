@@ -6,7 +6,14 @@ Item {
     property alias background: background.source
     property alias currentIndex: list.currentIndex
 
+    property int scroll_disabled_on: -1;
+
     default property alias content: visualModel.children
+
+    function deactivateListScroll(for_page_idx) {
+        scroll_disabled_on = for_page_idx;
+        console.log("deactivateListScroll "+for_page_idx);
+    }
 
     function activateEditMode() {
         list.interactive = false;
@@ -59,7 +66,21 @@ Item {
         }
 
         currentIndex: wrapper.currentIndex
-        onCurrentIndexChanged: wrapper.currentIndex = currentIndex
+        onCurrentIndexChanged: {
+            list.interactive = true;
+            wrapper.currentIndex = currentIndex
+            if (!list.moving) {
+                if (scroll_disabled_on == currentIndex) {
+                    list.interactive = false;
+                }
+            }
+        }
+        onFlickEnded: {
+            list.interactive = true;
+            if (scroll_disabled_on == currentIndex) {
+                list.interactive = false;
+            }
+        }
 
         orientation: Qt.Horizontal
         boundsBehavior: Flickable.DragOverBounds
@@ -76,8 +97,8 @@ Item {
         id: pager
 
         height: 50
-        anchors.bottom: parent.bottom
-        anchors.horizontalCenter: parent.horizontalCenter
+        anchors { bottom: parent.bottom; right: parent.right; rightMargin: 5 }
+        //anchors.horizontalCenter: parent.horizontalCenter
         width: Math.min(count * 50, parent.width - 20)
         interactive: width == parent.width - 20
         orientation: Qt.Horizontal
