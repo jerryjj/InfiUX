@@ -6,6 +6,8 @@ TEMPLATE = app
 
 QT       += core declarative
 
+CONFIG -= app_bundle
+
 #CONFIG += mobility
 #MOBILITY += sensors
 #LIBS +=-lQtComponents
@@ -29,12 +31,18 @@ unix:!symbian {
 HEADERS += \
     src/mainwidget.h \
     src/configuration.h \
-    src/deviceinfo.h
+    src/deviceinfo.h \
+    src/shogo.h \
+    src/devicecontrol.h \
+    src/keyboard.h
 
 SOURCES += src/main.cpp \
     src/mainwidget.cpp \
     src/configuration.cpp \
-    src/deviceinfo.cpp
+    src/deviceinfo.cpp \
+    src/shogo.cpp \
+    src/devicecontrol.cpp \
+    src/keyboard.cpp
 
 OTHER_FILES += \
     Apps/DummyOne.qml \
@@ -57,7 +65,11 @@ OTHER_FILES += \
     ApplicationLauncher.qml \
     Core/MainMenu.qml \
     Core/TopPanel.qml \
-    widgets/ApplicationLauncher.qml
+    widgets/ApplicationLauncher.qml \
+    Common/Keyboard.qml \
+    Common/KeyboardButton.qml \
+    Apps/browser/webbrowser.qml
 
 RESOURCES += \
-    InfiUX.qrc
+    InfiUX.qrc \
+    applications.qrc
