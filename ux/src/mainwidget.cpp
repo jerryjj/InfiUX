@@ -96,8 +96,6 @@ Qt::Key MainWidget::getQtKeyFromString(QString s)
         code = Qt::Key_unknown;
     }
 
-    qDebug() << "final code: " << code;
-
     return (Qt::Key) code;
 }
 
