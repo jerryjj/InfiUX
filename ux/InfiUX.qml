@@ -4,10 +4,9 @@ import "Core" 1.0 as Core
 import "Common" 1.0 as Common
 
 import "Core/notifications.js" 1.0 as Notifications
-import "widgets" 1.0
+import "/widgets" 1.0 as Widgets
 
 import InfiUX.DeviceInfo 1.0
-//import InfiUX.Keyboard 1.0
 
 Item {
     id: ui
@@ -19,12 +18,7 @@ Item {
     property alias keyboard: virtualKeyboard
 
     width: deviceInfo.screenX; height: deviceInfo.screenY
-
-    //Just dummy way to test OSD
     focus: true
-    Keys.onEscapePressed: {
-        mainOSD.opacity = !mainOSD.opacity;
-    }
 
     SystemPalette { id: palette }
 
@@ -33,9 +27,15 @@ Item {
         onClicked: ui.focus = false;
     }
 
+    Connections {
+        target: mainWidget
+        onShowOSDRequested: {
+            mainOSD.opacity = !mainOSD.opacity;
+        }
+    }
+
     Component.onCompleted: {
         //console.log(mainWidget.getConfigValue("main/loglevel").toString());
-        //keyboard.is_open = true;
 
         browser.createObject(testBrowser);
     }
@@ -57,6 +57,7 @@ Item {
         Core.DesktopPage {
             id: pageOne
             desktopIndex: 0
+            iconName: "browser"
 
             Item {
                 id: testBrowser
@@ -71,7 +72,7 @@ Item {
             id: pageTwo
             desktopIndex: 1
 
-            ApplicationLauncher {
+            /*Widgets.ApplicationLauncher {
                 id: appLOne
                 module: "DummyOne"
                 function getProperties() {
@@ -92,6 +93,16 @@ Item {
                     color: "#ffffff"
                     anchors.fill: parent
                 }
+            }*/
+
+            Widgets.Clock {
+                x: 10; y: 10
+                city: "Helsinki"; shift: 0
+            }
+
+            Widgets.Clock {
+                x: 10; y: 270
+                city: "Brussels"; shift: 1
             }
         }
 
@@ -99,7 +110,7 @@ Item {
             id: pageThree
             desktopIndex: 2
 
-            ApplicationLauncher {
+            Widgets.ApplicationLauncher {
                 id: appLThree
                 module: "DummyOne"
                 function getProperties() {
@@ -171,6 +182,7 @@ Item {
                 text: "Sleep"
                 onClicked: {
                     console.log("sleep");
+                    mainWidget.deviceSleep();
                 }
             },
 
@@ -178,7 +190,7 @@ Item {
                 text: "Reboot"
                 onClicked: {
                     console.log("reboot");
-                    mainWidget.exitApplication();
+                    mainWidget.deviceReboot();
                 }
             },
 
@@ -186,7 +198,7 @@ Item {
                 text: "Shutdown"
                 onClicked: {
                     console.log("shutdown");
-                    mainWidget.exitApplication();
+                    mainWidget.deviceShutdown();
                 }
             }
         ]
