@@ -7,6 +7,10 @@
 
 #include "keyboard.h"
 
+#ifdef SHOGO_AVAILABLE
+#include "shogo.h"
+#endif
+
 const QString contentPath = "qrc:/ui/";
 
 class MainWidget : public QDeclarativeView
@@ -19,6 +23,9 @@ public:
 public slots:
     void minimizeWindow();
     void exitApplication();
+    void deviceShutdown();
+    void deviceReboot();
+    void deviceSleep();
 
     void virtualKeyPressed(QString action, int code);
 
@@ -26,6 +33,11 @@ public slots:
 
 //private slots:
 //    void saveFocusWidget(QWidget *oldFocus, QWidget *newFocus);
+
+protected slots:
+
+signals:
+    void showOSDRequested(void);
 
 protected:
     virtual void keyReleaseEvent(QKeyEvent* e);
@@ -38,6 +50,10 @@ private:
     QObject *m_keyboardObject;
 
     QWidget *m_focused_widget;
+
+#ifdef SHOGO_AVAILABLE
+    Shogo* shogo;
+#endif
 };
 
 #endif // MAINWIDGET_H

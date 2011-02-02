@@ -52,6 +52,11 @@ MainWidget::MainWidget(QWidget *parent) :
     setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
 #endif
 
+#ifdef SHOGO_AVAILABLE
+    this->shogo = new Shogo();
+    connect(shogo, SIGNAL(buttonPower()), this, SIGNAL(showOSDRequested()));
+#endif
+
     this->m_virtualKeyboard = new Keyboard(this);
 
     // Open root QML file
@@ -175,9 +180,13 @@ void MainWidget::virtualKeyPressed(QString action, int code)
 void MainWidget::keyReleaseEvent(QKeyEvent* e)
 {
     qDebug() << "keyReleaseEvent " << e;
-    //if (!GCreator->oGetShogo()->handleSpecialKeys(e)) {
+#ifdef SHOGO_AVAILABLE
+    if (! shogo->handleSpecialKeys(e)) {
         QDeclarativeView::keyReleaseEvent(e);
-    //}
+    }
+#else
+    QDeclarativeView::keyReleaseEvent(e);
+#endif
 }
 
 /*void MainWidget::saveFocusWidget(QWidget * oldFocus, QWidget *newFocus)
@@ -209,4 +218,31 @@ void MainWidget::minimizeWindow()
 void MainWidget::exitApplication()
 {
     QApplication::quit();
+}
+
+void MainWidget::deviceShutdown()
+{
+#ifdef SHOGO_AVAILABLE
+    shogo->shutdown();
+#else
+    QApplication::quit();
+#endif
+}
+
+void MainWidget::deviceReboot()
+{
+#ifdef SHOGO_AVAILABLE
+    shogo->reboot();
+#else
+    QApplication::quit();
+#endif
+}
+
+void MainWidget::deviceSleep()
+{
+#ifdef SHOGO_AVAILABLE
+    shogo->sleep();
+#else
+    QApplication::quit();
+#endif
 }
