@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/">
+        <file>widgets/ApplicationLauncher.qml</file>
+        <file>widgets/Clock.qml</file>
+        <file>widgets/clock_content/background.png</file>
+        <file>widgets/clock_content/center.png</file>
+        <file>widgets/clock_content/clock-night.png</file>
+        <file>widgets/clock_content/clock.png</file>
+        <file>widgets/clock_content/hour.png</file>
+        <file>widgets/clock_content/minute.png</file>
+        <file>widgets/clock_content/second.png</file>
+    </qresource>
+</RCC>
