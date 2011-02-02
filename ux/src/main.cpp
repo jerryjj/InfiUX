@@ -54,11 +54,9 @@ int main(int argc, char *argv[])
 #endif
 
     // Splash screen
-    //#if defined(Q_WS_MAEMO_5)
     QPixmap pixmap(":/ui/img/splash.png");
     QSplashScreen splash(pixmap);
     splash.show();
-    //#endif
 
     QCoreApplication::setOrganizationName("Infigo Finland Oy");
     QCoreApplication::setOrganizationDomain("infigo.fi");
@@ -97,9 +95,7 @@ int main(int argc, char *argv[])
     MainWidget mainWidget;
     mainWidget.show();
 
-    //#if defined(Q_WS_MAEMO_5)
     splash.finish(&mainWidget);
-    //#endif
 
     app.connect(&app, SIGNAL(lastWindowClosed()), &app, SLOT(quit()));
 
