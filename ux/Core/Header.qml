@@ -53,7 +53,7 @@ Rectangle {
 
         Image {
             id: img
-            anchors.fill: parent
+            anchors.centerIn: parent
             source: "../img/header-arrow-down.png"
         }
 
