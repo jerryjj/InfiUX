@@ -1,6 +1,9 @@
 # To disable OpenGL features, comment the following:
 DEFINES += OPENGL_ENABLED
 
+# To enable Shogo tablet specific features uncomment the following
+#DEFINES += SHOGO_AVAILABLE
+
 TARGET = InfiUX
 TEMPLATE = app
 
@@ -32,7 +35,6 @@ HEADERS += \
     src/mainwidget.h \
     src/configuration.h \
     src/deviceinfo.h \
-    src/shogo.h \
     src/devicecontrol.h \
     src/keyboard.h
 
@@ -40,7 +42,6 @@ SOURCES += src/main.cpp \
     src/mainwidget.cpp \
     src/configuration.cpp \
     src/deviceinfo.cpp \
-    src/shogo.cpp \
     src/devicecontrol.cpp \
     src/keyboard.cpp
 
@@ -68,8 +69,13 @@ OTHER_FILES += \
     widgets/ApplicationLauncher.qml \
     Common/Keyboard.qml \
     Common/KeyboardButton.qml \
-    Apps/browser/webbrowser.qml
+    Apps/browser/webbrowser.qml \
+    widgets/Clock.qml
 
 RESOURCES += \
     InfiUX.qrc \
-    applications.qrc
+    applications.qrc \
+    widgets.qrc
+
+contains(DEFINES, SHOGO_AVAILABLE):HEADERS += src/shogo.h
+contains(DEFINES, SHOGO_AVAILABLE):SOURCES += src/shogo.cpp
