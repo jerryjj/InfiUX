@@ -40,6 +40,13 @@ Item {
         //browser.createObject(testBrowser);
     }
 
+    Timer {
+        interval: 1000; running: true; repeat: false
+        onTriggered: {
+            browser.createObject(testBrowser);
+        }
+    }
+
     Core.TopPanel {
         id: topPanel
         width: ui.width; height: ui.height
@@ -64,7 +71,6 @@ Item {
                 objectName: "testBrowser"
                 anchors.fill: parent
                 Component.onCompleted: {
-                    browser.createObject(testBrowser);
                     desktop.deactivateListScroll(0);
                 }
             }
