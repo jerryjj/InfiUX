@@ -7,7 +7,7 @@
 
 #include "keyboard.h"
 
-#ifdef SHOGO_AVAILABLE
+#if defined(SHOGO_AVAILABLE)
 #include "shogo.h"
 #endif
 
@@ -51,7 +51,7 @@ private:
 
     QWidget *m_focused_widget;
 
-#ifdef SHOGO_AVAILABLE
+#if defined(SHOGO_AVAILABLE)
     Shogo* shogo;
 #endif
 };

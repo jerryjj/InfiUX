@@ -4,7 +4,7 @@
 #include <QDeclarativeEngine>
 #include <QDeclarativeItem>
 
-#ifdef OPENGL_ENABLED
+#if defined(OPENGL_ENABLED)
 #include <QGLWidget>
 #include <QGLFormat>
 #endif
@@ -45,14 +45,14 @@ MainWidget::MainWidget(QWidget *parent) :
     setAttribute(Qt::WA_OpaquePaintEvent);
     setAttribute(Qt::WA_NoSystemBackground);
 
-#ifdef OPENGL_ENABLED
+#if defined(OPENGL_ENABLED)
     // Make QDeclarativeView use OpenGL backend
     QGLWidget *glWidget = new QGLWidget(this);
     setViewport(glWidget);
     setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
 #endif
 
-#ifdef SHOGO_AVAILABLE
+#if defined(SHOGO_AVAILABLE)
     this->shogo = new Shogo();
     connect(shogo, SIGNAL(buttonPower()), this, SIGNAL(showOSDRequested()));
 #endif
@@ -180,7 +180,7 @@ void MainWidget::virtualKeyPressed(QString action, int code)
 void MainWidget::keyReleaseEvent(QKeyEvent* e)
 {
     qDebug() << "keyReleaseEvent " << e;
-#ifdef SHOGO_AVAILABLE
+#if defined(SHOGO_AVAILABLE)
     if (! shogo->handleSpecialKeys(e)) {
         QDeclarativeView::keyReleaseEvent(e);
     }
@@ -222,7 +222,7 @@ void MainWidget::exitApplication()
 
 void MainWidget::deviceShutdown()
 {
-#ifdef SHOGO_AVAILABLE
+#if defined(SHOGO_AVAILABLE)
     shogo->shutdown();
 #else
     QApplication::quit();
@@ -231,7 +231,7 @@ void MainWidget::deviceShutdown()
 
 void MainWidget::deviceReboot()
 {
-#ifdef SHOGO_AVAILABLE
+#if defined(SHOGO_AVAILABLE)
     shogo->reboot();
 #else
     QApplication::quit();
@@ -240,7 +240,7 @@ void MainWidget::deviceReboot()
 
 void MainWidget::deviceSleep()
 {
-#ifdef SHOGO_AVAILABLE
+#if defined(SHOGO_AVAILABLE)
     shogo->sleep();
 #else
     QApplication::quit();
