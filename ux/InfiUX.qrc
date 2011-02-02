@@ -30,5 +30,7 @@
         <file>img/icons/battery.png</file>
         <file>img/header-arrow-down.png</file>
         <file>img/splash.png</file>
+        <file>Common/KeyboardButton.qml</file>
+        <file>Common/Keyboard.qml</file>
     </qresource>
 </RCC>
