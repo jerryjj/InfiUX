@@ -14,6 +14,8 @@ Item {
 
     scale: 1
 
+    signal destroyRequested
+
     Connections {
         target: parent.parent
         onOpenEditMode: {
@@ -22,6 +24,10 @@ Item {
         onCloseEditMode: {
             editMode = false;
         }
+    }
+
+    onDestroyRequested: {
+        widget.opacity = 0;
     }
 
     Item {
@@ -50,9 +56,12 @@ Item {
 
             onReleased: {
                 console.log("D'n'D released. save coordinates!");
+                console.log("x: "+widget.x+" y: "+widget.y);
                 widget.isDragged = false;
             }
             onPositionChanged: {
+                //Temporarily disabled thsi until the moving is implemented
+                /*
                 if (p_changingDesktop) return;
                 //TODO: When switching desktop clone widget to other desktop
                 if (widget.x <= 0) {
@@ -68,7 +77,7 @@ Item {
                         widget.p_changingDesktop = true;
                         desktop.moveRight();
                     }
-                }
+                }*/
             }
         }
 
@@ -81,6 +90,7 @@ Item {
                 anchors.fill: parent
                 onClicked: {
                     console.log("destroy widget");
+                    destroyRequested();
                 }
             }
 
