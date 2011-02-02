@@ -35,14 +35,14 @@ HEADERS += \
     src/mainwidget.h \
     src/configuration.h \
     src/deviceinfo.h \
-    src/devicecontrol.h \
+    #src/devicecontrol.h \
     src/keyboard.h
 
 SOURCES += src/main.cpp \
     src/mainwidget.cpp \
     src/configuration.cpp \
     src/deviceinfo.cpp \
-    src/devicecontrol.cpp \
+    #src/devicecontrol.cpp \
     src/keyboard.cpp
 
 OTHER_FILES += \
