@@ -1,6 +1,6 @@
 import Qt 4.7
-import "../Common" 1.0 as Common
-import "../Core/applicationOpener.js" 1.0 as AppOpener
+import "/ui/Common" 1.0 as Common
+import "/ui/Core/applicationOpener.js" 1.0 as AppOpener
 
 Common.WidgetBase {
     id: widget
