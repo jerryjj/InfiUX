@@ -4,6 +4,7 @@ Item {
     id: wrapper
     height: 0
     opacity: 0
+    z: 10
 
     property bool is_open: false
     property int row_height: 75
