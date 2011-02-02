@@ -37,7 +37,7 @@ Item {
     Component.onCompleted: {
         //console.log(mainWidget.getConfigValue("main/loglevel").toString());
 
-        browser.createObject(testBrowser);
+        //browser.createObject(testBrowser);
     }
 
     Core.TopPanel {
@@ -61,8 +61,10 @@ Item {
 
             Item {
                 id: testBrowser
+                objectName: "testBrowser"
                 anchors.fill: parent
                 Component.onCompleted: {
+                    browser.createObject(testBrowser);
                     desktop.deactivateListScroll(0);
                 }
             }

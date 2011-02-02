@@ -65,6 +65,9 @@ MainWidget::MainWidget(QWidget *parent) :
     QObject *ro = dynamic_cast<QObject*>(this->rootObject());
     m_keyboardObject = ro->findChild<QObject *>("keyboard");
 
+    //QObject *browserObject = ro->findChild<QObject *>("testBrowser");
+    //browser->setParent(browserObject);
+
     connect(m_virtualKeyboard, SIGNAL(showKeyboardRequested()), m_keyboardObject, SIGNAL(show()));
     connect(m_virtualKeyboard, SIGNAL(hideKeyboardRequested()), m_keyboardObject, SIGNAL(hide()));
     connect(m_virtualKeyboard, SIGNAL(shiftToggleRequested()), m_keyboardObject, SIGNAL(toggleShift()));
