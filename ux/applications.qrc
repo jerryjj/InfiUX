@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/browser">
+        <file alias="main.qml">Apps/browser/webbrowser.qml</file>
+        <file alias="content/UrlInput.qml">Apps/browser/content/UrlInput.qml</file>
+        <file alias="content/ScrollBar.qml">Apps/browser/content/ScrollBar.qml</file>
+        <file alias="content/Header.qml">Apps/browser/content/Header.qml</file>
+        <file alias="content/FlickableWebView.qml">Apps/browser/content/FlickableWebView.qml</file>
+        <file alias="content/Button.qml">Apps/browser/content/Button.qml</file>
+        <file alias="content/pics/view-refresh.png">Apps/browser/content/pics/view-refresh.png</file>
+        <file alias="content/pics/titlebar-bg.png">Apps/browser/content/pics/titlebar-bg.png</file>
+        <file alias="content/pics/scrollbar.png">Apps/browser/content/pics/scrollbar.png</file>
+        <file alias="content/pics/go-previous-view.png">Apps/browser/content/pics/go-previous-view.png</file>
+        <file alias="content/pics/go-next-view.png">Apps/browser/content/pics/go-next-view.png</file>
+        <file alias="content/pics/go-jump-locationbar.png">Apps/browser/content/pics/go-jump-locationbar.png</file>
+        <file alias="content/pics/edit-delete.png">Apps/browser/content/pics/edit-delete.png</file>
+        <file alias="content/pics/display.png">Apps/browser/content/pics/display.png</file>
+    </qresource>
+</RCC>
