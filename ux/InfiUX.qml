@@ -4,7 +4,7 @@ import "Core" 1.0 as Core
 import "Common" 1.0 as Common
 
 import "Core/notifications.js" 1.0 as Notifications
-import "/widgets" 1.0 as Widgets
+import "Core/desktop.js" 1.0 as DesktopLogic
 
 import InfiUX.DeviceInfo 1.0
 
@@ -36,15 +36,6 @@ Item {
 
     Component.onCompleted: {
         //console.log(mainWidget.getConfigValue("main/loglevel").toString());
-
-        //browser.createObject(testBrowser);
-    }
-
-    Timer {
-        interval: 1000; running: true; repeat: false
-        onTriggered: {
-            browser.createObject(testBrowser);
-        }
     }
 
     Core.TopPanel {
@@ -66,13 +57,8 @@ Item {
             desktopIndex: 0
             iconName: "browser"
 
-            Item {
-                id: testBrowser
-                objectName: "testBrowser"
-                anchors.fill: parent
-                Component.onCompleted: {
-                    desktop.deactivateListScroll(0);
-                }
+            Component.onCompleted: {
+                DesktopLogic.loadContent(0, pageOne);
             }
         }
 
@@ -80,37 +66,8 @@ Item {
             id: pageTwo
             desktopIndex: 1
 
-            /*Widgets.ApplicationLauncher {
-                id: appLOne
-                module: "DummyOne"
-                function getProperties() {
-                    return {color: "#ffffff", title: "Dummy app 1", text: "Dummy app 1"};
-                }
-
-                x: 300; y: 200
-
-                onOpened: {
-                    notifications.addInfo({text: "Hello, World!"});
-                }
-
-                Rectangle {
-                    function prepareEditMode() {
-                        console.log("prepareEditMode");
-                    }
-
-                    color: "#ffffff"
-                    anchors.fill: parent
-                }
-            }*/
-
-            Widgets.Clock {
-                x: 10; y: 10
-                city: "Helsinki"; shift: 0
-            }
-
-            Widgets.Clock {
-                x: 10; y: 270
-                city: "Brussels"; shift: 1
+            Component.onCompleted: {
+                DesktopLogic.loadContent(1, pageTwo);
             }
         }
 
@@ -118,7 +75,11 @@ Item {
             id: pageThree
             desktopIndex: 2
 
-            Widgets.ApplicationLauncher {
+            Component.onCompleted: {
+                DesktopLogic.loadContent(2, pageThree);
+            }
+
+            /*Widgets.ApplicationLauncher {
                 id: appLThree
                 module: "DummyOne"
                 function getProperties() {
@@ -135,7 +96,7 @@ Item {
                     color: "#444444"
                     anchors.fill: parent
                 }
-            }
+            }*/
         }
     }
 
