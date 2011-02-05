@@ -36,11 +36,6 @@ MainWidget::MainWidget(QWidget *parent) :
     m_context = rootContext();
     m_context->setContextProperty("mainWidget", this);
 
-    QDeclarativeComponent browser_comp(this->engine(), QUrl("qrc:/browser/main.qml"));
-    QDeclarativeComponent *browser = qobject_cast<QDeclarativeComponent *>(&browser_comp);
-    //QDeclarativeItem *item = qobject_cast<QDeclarativeItem *>(component.create());
-    m_context->setContextProperty("browser", browser);
-
     // Set view optimizations not already done for QDeclarativeView
     setAttribute(Qt::WA_OpaquePaintEvent);
     setAttribute(Qt::WA_NoSystemBackground);
@@ -64,9 +59,6 @@ MainWidget::MainWidget(QWidget *parent) :
 
     QObject *ro = dynamic_cast<QObject*>(this->rootObject());
     m_keyboardObject = ro->findChild<QObject *>("keyboard");
-
-    QObject *browserObject = ro->findChild<QObject *>("testBrowser");
-    browser->setParent(browserObject);
 
     connect(m_virtualKeyboard, SIGNAL(showKeyboardRequested()), m_keyboardObject, SIGNAL(show()));
     connect(m_virtualKeyboard, SIGNAL(hideKeyboardRequested()), m_keyboardObject, SIGNAL(hide()));
