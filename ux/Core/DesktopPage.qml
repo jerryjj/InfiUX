@@ -12,7 +12,7 @@ Item {
     property string iconPrefix: "../img/desktop-icon-"
     property string iconName: "default"
 
-    signal openEditMode
+    /*signal openEditMode
     signal closeEditMode
 
     onEditModeChanged: {
@@ -21,7 +21,7 @@ Item {
         } else {
             closeEditMode();
         }
-    }
+    }*/
 
     Connections {
         target: desktop
