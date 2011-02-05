@@ -70,7 +70,8 @@ OTHER_FILES += \
     Common/Keyboard.qml \
     Common/KeyboardButton.qml \
     Apps/browser/webbrowser.qml \
-    widgets/Clock.qml
+    widgets/Clock.qml \
+    Core/desktop.js
 
 RESOURCES += \
     InfiUX.qrc \
