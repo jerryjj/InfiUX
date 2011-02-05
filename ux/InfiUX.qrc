@@ -38,5 +38,6 @@
         <file>img/desktop-edit-bar.png</file>
         <file>img/desktop-edit-icon-active.png</file>
         <file>img/desktop-edit-icon.png</file>
+        <file>Core/desktop.js</file>
     </qresource>
 </RCC>
