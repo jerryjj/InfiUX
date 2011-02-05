@@ -5,7 +5,8 @@ Item {
 
     default property alias content: layout.children
 
-    property int pageIndex: parent.parent.desktopIndex
+    //property int pageIndex: parent.parent.desktopIndex
+    //property variant page
 
     property bool editMode: false
     property bool isDragged: false
@@ -16,16 +17,21 @@ Item {
 
     signal destroyRequested
 
+    Component.onCompleted: {
+        console.log("widget completed");
+        console.log(parent);
+        //console.log("page: "+page);
+    }
+
     Connections {
-        target: parent.parent
-        onOpenEditMode: {
+        target: desktop
+        onEditModeActivated: {
             editMode = true;
         }
-        onCloseEditMode: {
+        onEditModeDeactivated: {
             editMode = false;
         }
     }
-
     onDestroyRequested: {
         widget.opacity = 0;
     }
