@@ -125,6 +125,7 @@ Flickable {
             if (url != null) { header.editUrl = url.toString(); }
         }
         onDoubleClick: {
+            var zoomFactor = 0.8;
                         if (!heuristicZoom(clickX,clickY,2.5)) {
                             var zf = flickable.width / contentsSize.width
                             if (zf >= contentsScale)
