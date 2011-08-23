@@ -49,6 +49,8 @@ Image {
 
     source: "pics/titlebar-bg.png"; fillMode: Image.TileHorizontally
 
+    signal tabsRequested
+
     x: webView.contentX < 0 ? -webView.contentX : webView.contentX > webView.contentWidth-webView.width
        ? -webView.contentX+webView.contentWidth-webView.width : 0
     y: {
@@ -64,10 +66,28 @@ Image {
         Item {
             width: parent.width; height: 40
 
+            Rectangle {
+                id: tabsButton
+                anchors { left: parent.left; bottom: parent.bottom }
+                width: 50; height: 20
+
+                Text {
+                    anchors.fill: parent
+                    text: "Tabs"
+                }
+
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        tabsRequested();
+                    }
+                }
+            }
+
             Button {
                 id: backButton
                 action: webView.back; image: "pics/go-previous-view.png"
-                anchors { left: parent.left; bottom: parent.bottom }
+                anchors { left: tabsButton.right; bottom: parent.bottom }
             }
 
             Button {
