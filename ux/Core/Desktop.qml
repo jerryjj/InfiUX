@@ -1,5 +1,7 @@
 import Qt 4.7
 
+import "../Common" 1.0 as Common
+
 Item {
     id: wrapper
     z: 1
@@ -146,6 +148,62 @@ Item {
             Image {
                 anchors.fill: parent
                 source: "../img/desktop-edit-bar.png"
+            }
+
+            Row {
+                anchors { left: parent.left; leftMargin: editButton.width + 10; right: parent.right; top: parent.top; bottom: parent.bottom }
+
+                Item {
+                    width: 120; height: content.height
+
+                    Text {
+                        color: "#fff"
+                        anchors.centerIn: parent
+                        text: "Add widget"
+                    }
+
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            console.log("Add wgt");
+                        }
+                    }
+                }
+
+                Item {
+                    width: 120; height: content.height
+
+                    Text {
+                        color: "#fff"
+                        anchors.centerIn: parent
+                        text: "Add desktop"
+                    }
+
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            console.log("Add dsk");
+                        }
+                    }
+                }
+
+                Item {
+                    width: 120; height: content.height
+
+                    Text {
+                        color: "#fff"
+                        anchors.centerIn: parent
+                        text: "Remove desktop"
+                    }
+
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            console.log("del dsk");
+                        }
+                    }
+                }
+
             }
         }
 
